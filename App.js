@@ -3,7 +3,8 @@ import { Provider } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { RutasNoAutenticadas } from './Componentes/NoAutenticados/RutasNoAutenticadas'
 import Store from './Store/Store';
-
+import Seleccion from './Seleccion'
+;
 export default class App extends React.Component {
   constructor(){
     super();
@@ -14,7 +15,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
       <Provider store= { Store}>
-        <RutasNoAutenticadas/>
+        <Seleccion/>
       </Provider>
       </View>
     );

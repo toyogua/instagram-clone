@@ -1,11 +1,10 @@
 import React, { component } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
-import { auntenticacion } from '../../../Store/Servicios/Firebase';
 
 const fieldNombre = ( props ) => {
     return  (
-    <View>
+    <View style={styles.textInput}>
         <TextInput placeholder={props.ph}
         onChangeText={props.input.onChange }
         value={props.input.value}
@@ -53,33 +52,14 @@ const validate = ( values) => {
     return errors;
 }
 
-const SignUpForm = ( props ) => {
+const SignInForm = ( props ) => {
     return (
-        <View style={styles.textInput}>
-            <Field name="nombre" component={ fieldNombre } ph="nombre" />
+        <View>
             <Field name="correo" component={ fieldNombre } ph="correo@correo.com" />
             <Field name="password" component={ fieldNombre } ph="******" />
-            <Field name="confirmacion" component={ fieldNombre } ph="******"/>
             <Button 
-                title="Registrar"
-                onPress= { 
-                    props.handleSubmit(
-                    // (values) => { 
-                    // console.log(values);
-                    // auntenticacion.createUserWithEmailAndPassword(values.correo, values.password)
-                    //     // Handle Errors here.
-                    //     .then((success) => {
-                    //         console.log(success);
-                    //     })
-                    //     .catch((error) => {
-                    //         var errorCode = error.code;
-                    //         var errorMessage = error.message;
-                    //         console.log(errorCode);
-                    //     });
-                    // }
-                    props.registro
-                     )
-                }
+                title="SignIn"
+                onPress= { props.handleSubmit( props.login) }
             />
         </View>
     );
@@ -95,10 +75,10 @@ const styles = StyleSheet.create({
     },
     errors: {
         color: '#FF0000',
-    }
+    },
 });
 
 export default reduxForm({
-    form: 'SignUpForm',
+    form: 'SignInForm',
     validate,
-})(SignUpForm);
+})(SignInForm);
