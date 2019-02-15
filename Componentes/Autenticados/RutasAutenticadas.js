@@ -4,6 +4,7 @@ import Add from './Add';
 import { StackSearch } from './StackSearch';
 import Profile from './Profile';
 import { StackFollow } from './StackFollow';
+import { StackAdd } from './StackAdd';
 
 
 const RutasAutenticadas = TabNavigator({
@@ -14,7 +15,7 @@ const RutasAutenticadas = TabNavigator({
         screen: StackSearch,
     },
     Add: {
-        screen: Add,
+        screen: StackAdd,
     },
     Follow: {
         screen: StackFollow,

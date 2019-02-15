@@ -30,9 +30,85 @@ const reducerSesion = ( state=null, action ) =>{
     }
 }
 
+const reducerImagenSignUp = ( state= {imagen:null}, action ) => {
+    switch (action.type) {
+        case CONSTANTES.CARGAR_IMAGEN_SIGNUP:
+            
+            return {imagen: action.imagen };
+
+            case CONSTANTES.LIMPIAR_IMAGEN_SIGNUP:
+            
+            return {imagen: null };    
+         
+    
+        default:
+            return state;
+    }
+}
+
+const reducerImagenPublicacion = ( state= {imagen:null}, action ) => {
+    switch (action.type) {
+        case CONSTANTES.CARGAR_IMAGEN_PUBLICACION:
+            
+            return {imagen: action.imagen };
+
+            case CONSTANTES.LIMPIAR_IMAGEN_PUBLICACION:
+            
+            return {imagen: null };    
+         
+    
+        default:
+            return state;
+    }
+}
+
+const reducerPublicacionesDescargadas = (state = [], action ) => {
+    switch (action.type) {
+        case CONSTANTES.AGREGAR_PUBLICACIONES_STORE:
+            
+            return [...state, ...action.publicaciones];
+    
+        default:
+            return state;
+    }
+}
+
+const reducerAutoresDescargados = (state = [], action ) => {
+    switch (action.type) {
+        case CONSTANTES.AGREGAR_AUTORES_STORE:
+            
+            return [...state, ...action.autores];
+    
+        default:
+            return state;
+    }
+};
+
+const reducerExitoSubirPublicacion = ( state ={estado: null}, action) => {
+    switch (action.type) {
+        case CONSTANTES.EXITO_SUBIR_PUBLICACION:
+            
+            return {estado: 'EXITO'};
+        
+            case CONSTANTES.ERROR_SUBIR_PUBLICACION:
+            
+            return {estado: 'ERROR'};
+
+            case CONSTANTES.LIMPIAR_SUBIR_PUBLICACION:
+            return {estado: null }
+        default:
+            return state;
+    }
+}
+
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
+    reducerExitoSubirPublicacion,
+    reducerAutoresDescargados,
+    reducerPublicacionesDescargadas,
+    reducerImagenPublicacion,
+    reducerImagenSignUp,
     reducerSesion,
     reducerPrueba,
     form,

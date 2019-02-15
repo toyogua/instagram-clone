@@ -16,7 +16,9 @@ class Seleccion extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <RutasNoAutenticadas/>
+            { this.props.usuario? <RutasAutenticadas/>: <RutasNoAutenticadas/>
+            }
+                
             </View>
         );
     }
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
 //make this component available to the app
 const mapStateToProps = (state ) => {
     return {
-        prop: state.prop
+        usuario: state.reducerSesion,
     }
 }
 

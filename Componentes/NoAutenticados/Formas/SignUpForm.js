@@ -1,7 +1,6 @@
 import React, { component } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
-import { auntenticacion } from '../../../Store/Servicios/Firebase';
 
 const fieldNombre = ( props ) => {
     return  (
@@ -20,8 +19,22 @@ const fieldNombre = ( props ) => {
    
 };
 
-const validate = ( values) => {
+const fieldImagen = props => (
+    <View>
+        <View>
+            {
+                props.meta.touched && 
+                props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>
+            }
+        </View>
+    </View>
+)
+
+const validate = ( values, props ) => {
     const errors = {};
+    if(!props.imagen){
+        errors.imagen = 'imagen es requerido';
+    }
     if(!values.nombre){
         errors.nombre = 'requerido';
     }else if ( values.nombre.length < 5 ){
@@ -53,9 +66,9 @@ const validate = ( values) => {
     return errors;
 }
 
-const SignUpForm = ( props ) => {
-    return (
-        <View style={styles.textInput}>
+const SignUpForm = props  => (
+        <View style={styles.container}>
+            <Field name='imagen' component={fieldImagen}/>
             <Field name="nombre" component={ fieldNombre } ph="nombre" />
             <Field name="correo" component={ fieldNombre } ph="correo@correo.com" />
             <Field name="password" component={ fieldNombre } ph="******" />
@@ -64,28 +77,18 @@ const SignUpForm = ( props ) => {
                 title="Registrar"
                 onPress= { 
                     props.handleSubmit(
-                    // (values) => { 
-                    // console.log(values);
-                    // auntenticacion.createUserWithEmailAndPassword(values.correo, values.password)
-                    //     // Handle Errors here.
-                    //     .then((success) => {
-                    //         console.log(success);
-                    //     })
-                    //     .catch((error) => {
-                    //         var errorCode = error.code;
-                    //         var errorMessage = error.message;
-                    //         console.log(errorCode);
-                    //     });
-                    // }
+                    
                     props.registro
                      )
                 }
             />
         </View>
-    );
-};
+)
 
 const styles = StyleSheet.create({
+    container:{
+        flex: 3,
+    },
     textInput:{
         marginBottom: 16,
     },

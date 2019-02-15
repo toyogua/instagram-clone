@@ -1,13 +1,24 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
 // create a component
 class Add extends Component {
     render() {
+        console.log(this.props);
+        const { navigation } = this.props;
         return (
             <View style={styles.container}>
-                <Text>Add</Text>
+                <Button
+                    title='Seleccionar foto de galería'
+                    onPress={() => { navigation.navigate('Seleccion')}}
+                />
+                    <Text>Add</Text>
+                <Button
+                    title='Tomar foto'
+                    onPress={() => { navigation.navigate('Seleccion')}}
+                />
+                <Text>Tomar foto</Text>
             </View>
         );
     }
@@ -19,7 +30,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: '#f9f9f9',
     },
 });
 
